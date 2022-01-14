@@ -1,9 +1,43 @@
-<html>
- 
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicação</title>
+    <link href="style.css" rel='stylesheet'>
+</head>
 <body>
-  <h1>Gabriel Henrique</h1>
-  <p>Welcome to my website!</p>
-  <img src="https://content.codecademy.com/articles/github-pages-via-web-app/happy-ice-cream.gif" />
-</body>
+    <div id='result'></div>
+
+    <button id='bnt'>clique aki</button>
+
+
+
+<script>
  
+let button = document.querySelector('#bnt')
+button.addEventListener('click', clique);
+function clique() {
+
+        let url = `https://us-central1-ss-devops.cloudfunctions.net/rand?min=1&max=300`
+
+        fetch(url).then((response) =>{
+        return response.json()
+    })
+    .then((data) => {
+        let randomNumber = data.value
+        if (typeof randomNumber === 'number') {
+            document.querySelector('#result').innerHTML = randomNumber
+        } else {
+            console.log('Alerta de erro!')
+            return clique();
+        }
+        console.log(data)
+
+})
+    };
+ </script>
+</body>
+
 </html>

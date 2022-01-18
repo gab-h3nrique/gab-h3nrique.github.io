@@ -1,0 +1,58 @@
+body {
+    background: #f4f4f4;
+    font-weight: lighter;
+    font-family: Rubik;
+    height: 99vh;
+    width: 100vw;
+    margin: 0;
+    border-top: 3px solid #00a1ff;
+}
+
+main {
+    width: 300px;
+    margin: 0 auto;
+    display: flex;
+    height: 90vh;
+    align-items: center;
+    justify-items: center;
+}
+
+section {
+    display: flex;
+    flex-wrap: wrap;
+    background: #e8e8e8;
+    border-radius: 20px;
+    padding: 28px;
+    justify-content: space-around;
+
+}
+
+article {
+    align-items: center;
+    width: 100%;
+    text-align: center;
+}
+
+#one {
+    color: rgb(0, 0, 0);
+}
+
+#two {
+    font-size: 90px;
+    height: 140px;
+}
+
+#three {
+    height: 100px;
+}
+#reload {
+    width: 50px;
+    text-align: center;
+    align-items: center;
+}
+#input {
+    margin-top: 50px;
+}
+p{
+    color: #00a1ff;
+}

@@ -1,58 +1,90 @@
 body {
-    background: #ffffff;
-    font-weight: lighter;
-    font-family: Rubik;
-    height: 99vh;
-    width: 100vw;
-    margin: 0;
-    border-top: 3px solid #00a1ff;
+  height: 99vh;
+  width: 100vw;
+  margin: 0;
 }
-
 main {
-    width: 300px;
-    margin: 0 auto;
-    display: flex;
-    height: 90vh;
-    align-items: center;
-    justify-items: center;
+  height: 90vh;
+  align-content: center;
+  justify-content: space-around;
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
 }
-
 section {
-    display: flex;
-    flex-wrap: wrap;
-    background: #e8e8e8;
-    border-radius: 20px;
-    padding: 28px;
-    justify-content: space-around;
-
+  justify-content: center;
+  display: flex;
+  width: 250px;
+}
+.container {
+  margin-right: 3px;
+  margin-left: 3px;
+  border-radius: 5px;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  width: 79px;
+  height: 140px;
+  display: flex;
+  flex-wrap: wrap;
+  background: rgb(255, 255, 255)
+}
+.segment{
+  position:absolute;
+  color: white;
+  background:rgb(56, 1, 255);
+  height: 15px;
+  width: 55px;
+  border-radius: 20px 20px 20px 20px;
+}
+.stickA, .stickB {
+  height: 55px;
+  width: 15px;
+  border-radius: 8px 20px 20px 8px;
+  left:1px;
+}
+.stickF, .stickD {
+  height: 55px;
+  width: 15px;
+  border-radius: 20px 8px 8px 20px;
+  right: 1px;
+}
+.stickC {
+  height: 15px;
+  width: 55px;
+  border-radius: 20px 20px 8px 8px;
+  bottom: 1px;
+}
+.stickD {
+  bottom: 10px;
+}
+.stickE {
+  height: 15px;
+  width: 55px;
+  border-radius: 8px 8px 20px 20px;
+  top: 1px;
+}
+.stickF {
+  top: 10px;
 }
 
-article {
-    align-items: center;
-    width: 100%;
-    text-align: center;
+.stickD {
+  bottom: 10px;
+}
+.stickA {
+  top: 10px;
+}
+.stickB {
+  bottom: 10px;
 }
 
-#one {
-    color: rgb(0, 0, 0);
-}
 
-#two {
-    font-size: 90px;
-    height: 140px;
-}
 
-#three {
-    height: 100px;
+div {
+  height: 420px;
+  align-items: center;
 }
-#reload {
-    width: 50px;
-    text-align: center;
-    align-items: center;
-}
-#input {
-    margin-top: 50px;
-}
-p{
-    color: #00a1ff;
+section {
+  height: 140px;
 }

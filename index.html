@@ -1,39 +1,60 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplicação</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;600;700&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <link rel='stylesheet' href='style.css'>
 </head>
 <body>
     <main>
-        <section>
-            <article id='one'>
-                <h2>QUAL É O NÚMERO?</h2>
-                <p id='final'></p>
-            </article>
-            <article id='two'>
-                <div id='finalNumber'></div>
-            </article>
-            <article id='three'>
-                <div id='reload'>
-                    <button id='bnt'>Nova partida</button>
-                </div>
-                <div id='input'>
-                    <input id='userValue' type='number'>
-                    <button id='chute'>enviar</button>
-                    <p id='final'></p>
-                </div>
-            </article>
+        <div>
+        <section id='one'>
+            <h2>QUAL É O NÚMERO?</h2>
+            <p id='final'></p>
         </section>
+        <section id='two'>
+        <div id='containerOne' class='container'>
+            <div id='stick_AA' class='segment stickA'></div>
+            <div id='stick_BB' class='segment stickB'></div>
+            <div id='stick_CC' class='segment stickC'></div>
+            <div id='stick_DD' class='segment stickD'></div>
+            <div id='stick_EE' class='segment stickE'></div>
+            <div id='stick_FF' class='segment stickF'></div>
+            <div id='stick_GG' class='segment stickG'></div>
+        </div>
+        <div id='containerTwo' class='container'>
+            <div id='stick_Aa' class='segment stickA'></div>
+            <div id='stick_Bb' class='segment stickB'></div>
+            <div id='stick_Cc' class='segment stickC'></div>
+            <div id='stick_Dd' class='segment stickD'></div>
+            <div id='stick_Ee' class='segment stickE'></div>
+            <div id='stick_Ff' class='segment stickF'></div>
+            <div id='stick_Gg' class='segment stickG'></div>
+        </div>
+        <div id='containerthree' class='container'>
+            <div id='stick_aa' class='segment stickA'></div>
+            <div id='stick_bb' class='segment stickB'></div>
+            <div id='stick_cc' class='segment stickC'></div>
+            <div id='stick_dd' class='segment stickD'></div>
+            <div id='stick_ee' class='segment stickE'></div>
+            <div id='stick_ff' class='segment stickF'></div>
+            <div id='stick_gg' class='segment stickG'></div>
+        </div>
+        </section>
+        <section id='three'>
+            <div id='reload'>
+                <button id='newMatch'>Nova partida</button>
+            </div>
+            <div id='input'>
+                <input id='userValue' type="text" maxlength="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');">
+                <button id='send'>enviar</button>
+                <p id='final'></p>
+            </div>
+        </section>
+        </div>
     </main>
-    <script src='app.js'></script>
+    <script  src="app.js"></script>
 </body>
-
 </html>

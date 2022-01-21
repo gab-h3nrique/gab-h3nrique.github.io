@@ -1,8 +1,11 @@
 body {
+  font-family: Arial, Helvetica, sans-serif;
+
   height: 99vh;
   width: 100vw;
   margin: 0;
   background: #e6e6e6;
+  font-weight: lighter;
 }
 main {
   height: 90vh;
@@ -114,8 +117,30 @@ section {
   height: 140px;
   display: flex;
   flex-wrap: wrap;
-
-
+}
+#userValue, #send, #reload, #newMatch {
+  font-family: Arial, Helvetica, sans-serif;
+font-size: 14px;
+letter-spacing: 0.4px;
+word-spacing: 0px;
+color: #707070;
+font-weight: 700;
+text-decoration: none;
+font-style: normal;
+font-variant: normal;
+text-transform: none;
+}
+#final{
+  font-family: Arial, Helvetica, sans-serif;
+font-size: 20px;
+letter-spacing: 0.4px;
+word-spacing: 0px;
+color: #707070;
+font-weight: 700;
+text-decoration: none;
+font-style: normal;
+font-variant: normal;
+text-transform: none;
 }
 h2{
   margin-top: 25px;
@@ -127,7 +152,8 @@ background-clip: text;
 text-shadow: 0px 3px 3px rgba(255,255,255,0.5)
 }
 p{
-  margin-top: 10px;
+  
+  margin-top: 7px;
   position: relative;
   margin-bottom: 15px;
 }
@@ -146,6 +172,7 @@ p{
   
 }
 #newMatch{
+  cursor: pointer;
   height: 35px;
   width: 130px;
   border-radius: 20px;
@@ -163,8 +190,11 @@ p{
   background: linear-gradient(145deg, #f6f6f6, #cfcfcf);
   box-shadow:  10px 10px 19px #c1c1c1,
                -10px -10px 19px #ffffff;
+               
 }
 #userValue{
+  font-size: 25px;
+  text-align: center;
   padding: 0;
   margin-top: 0%;
   width: 150px;
@@ -180,6 +210,7 @@ box-shadow: inset 10px 10px 19px #c1c1c1,
             inset -10px -10px 19px #ffffff;
 }
 #send{
+  cursor: pointer;
   padding: 0;
   width: 50px;
   height: 35px;
@@ -190,4 +221,7 @@ box-shadow: inset 10px 10px 19px #c1c1c1,
 box-shadow:  10px 10px 19px #c1c1c1,
              -10px -10px 19px #ffffff;
 }
-
+#userValue::placeholder {
+  font-size: 15px;
+  color: rgba(190, 192, 194, 0.884);
+}

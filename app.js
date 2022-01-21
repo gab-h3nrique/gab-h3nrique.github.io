@@ -32,11 +32,10 @@ let startGame = () => {
 // VARIAVEL CRIADA PARA RECEBER A URL DA API PARA QUE SEJA EXECUTADA NO FUNCTION FETCH
     fetch(url).then((response) => {
             return response.json()///RETORNANDO .JSON PARA A RESPONSE
-
         })
         .then((data) => {
-            let api = 0;
-            api = data.value
+            let = api = 0;
+             api = data.value
             //CONDICIONAL PARA VERIFICAR SE O VALOR RECEBIDO DA API É TRUE E NUMBER
             if (api && typeof api === 'number') {
                 
@@ -54,6 +53,7 @@ let startGame = () => {
                         document.querySelector('#final').innerHTML = `Você acertou!!`;
                         document.querySelector('#reload').style.display = 'flex';
                         document.querySelector('#input').style.display = 'none';
+
                     } else if (result < api) {
                         document.querySelector('#final').style.color = '#707070';
                         document.querySelector('#final').innerHTML = `É maior`
@@ -61,7 +61,6 @@ let startGame = () => {
                     } else if (result > api) {
                         document.querySelector('#final').style.color = '#707070';
                         document.querySelector('#final').innerHTML = `É menor`
-
                     }
 
                 })

@@ -23,6 +23,7 @@ document.querySelector('#reload').addEventListener('click', (clique) => {
 //FUNÇÃO CRIADA STARTGAME EXECUTA A LOGICA DO BLOCO QUE INFORMA SE O JOGO FOI GANHO OU NAO
 let startGame = () => {
     //  ESSE BLOCO DE COMANDO VAI RESETAR A INSTRUÇÃO DO USUARIO
+    document.querySelector('#input').style.display = 'flex'
     document.querySelector('#final').style.display = 'flex';
     document.querySelector('#final').innerHTML = '';
     document.querySelector('#reload').style.display = 'none'
@@ -38,6 +39,7 @@ let startGame = () => {
             //CONDICIONAL PARA VERIFICAR SE O VALOR RECEBIDO DA API É TRUE E NUMBER
             if (api && typeof api === 'number') {
                 
+    
                 //UM EVENTO DE ESCUTA EXECUTANDO A LOGICA DE VITÓRIA DO JOGO
                 let getEventClickInside = document.querySelector('#send')
                 getEventClickInside.addEventListener('click', (led) => {
@@ -45,10 +47,12 @@ let startGame = () => {
                     //VARIÁVEL CRIADA PARA RECEBER O INPUT DO USER E COMPARAR COM O DATA.VALUE
                     let result = parseInt(document.querySelector('#userValue').value)
 
+
                     if (result === api) {
-                        document.querySelector('#final').style.color = '#0ac50a'
-                        document.querySelector('#final').innerHTML = `Você acertou!!`
-                        document.querySelector('#reload').style.display = 'flex'
+                        document.querySelector('#final').style.color = '#0ac50a';
+                        document.querySelector('#final').innerHTML = `Você acertou!!`;
+                        document.querySelector('#reload').style.display = 'flex';
+                        document.querySelector('#input').style.display = 'none';
                     } else if (result < api) {
                         document.querySelector('#final').style.color = '#707070';
                         document.querySelector('#final').innerHTML = `É maior`
@@ -56,6 +60,7 @@ let startGame = () => {
                     } else if (result > api) {
                         document.querySelector('#final').style.color = '#707070';
                         document.querySelector('#final').innerHTML = `É menor`
+
                     }
 
                 })
@@ -372,6 +377,7 @@ let getEventClick = document.querySelector('#send')
 getEventClick.addEventListener('click', (led) => {
     //GETUSERVALUE RECEBENDO O VALOR DO USUARIO NO INPUT
     getUserInput = document.querySelector('#userValue').value
+    console.log(getUserInput)
     arrayInput.splice(0, 3) //ZERAR A ARRAY ANTES DE RECEBER UM NOVO VALOR
 
     //LOOP PARA SEPARAR CADA VALOR DO USUARIO EM UM UNICO ELEMENTO, EXEMPLO '230' => '2', '3', '0'
@@ -381,9 +387,11 @@ getEventClick.addEventListener('click', (led) => {
     }
     //FUNÇÃO PARA TIRA O ZERO A ESQUERDA, POIS EU CONSEGUIR FAZER DE OUTRA FORMA
     if (arrayInput[0] === 0 && arrayInput[1] === 0) {
+        console.log('hello')
         arrayInput.splice(0, 2)
     } else if (arrayInput[0] === 0) {
         arrayInput.shift();
+        console.log(`o arrayInput ficou assim: ${arrayInput}`)
     }
 
 

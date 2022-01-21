@@ -2,26 +2,27 @@
 // ESSA FUNCTION FAZ O DISPLAY ZERAR E MOSTRAR SOMENTE O PRIMEIRO
 function clearDisplay() {
     document.querySelector('#stick_AA').style.background = 'rgb(56, 1, 255)'
-    document.querySelector('#stick_BB').style.background = 'rgba(56, 1, 255, 0.137)'
+    document.querySelector('#stick_BB').style.background = 'rgb(56, 1, 255)'
     document.querySelector('#stick_CC').style.background = 'rgb(56, 1, 255)'
     document.querySelector('#stick_DD').style.background = 'rgb(56, 1, 255)'
     document.querySelector('#stick_EE').style.background = 'rgb(56, 1, 255)'
-    document.querySelector('#stick_FF').style.background = 'rgba(56, 1, 255, 0.137)'
-    document.querySelector('#stick_GG').style.background = 'rgb(56, 1, 255)'
+    document.querySelector('#stick_FF').style.background = 'rgb(56, 1, 255)'
+    document.querySelector('#stick_GG').style.background = 'rgba(56, 1, 255, 0.137)'
 
 
     document.querySelector('#containerTwo').style.display = 'none';
     document.querySelector('#containerthree').style.display = 'none';
 }
+
 // EVENTO PARA O BOTÃO NOVA PARTIDA FAZ COM OQUE EXECUTE NOVAMENTE O STARTGAME
-document.querySelector('#newMatch').style.display = 'none'
-document.querySelector('#newMatch').addEventListener('click', (clique) => {     
+document.querySelector('#reload').style.display = 'none'
+document.querySelector('#reload').addEventListener('click', (clique) => {     
     clearDisplay()
     startGame();
 });
 //FUNÇÃO CRIADA STARTGAME EXECUTA A LOGICA DO BLOCO QUE INFORMA SE O JOGO FOI GANHO OU NAO
 let startGame = () => {
-    document.querySelector('#newMatch').style.display = 'none'
+    document.querySelector('#reload').style.display = 'none'
     let url = `https://us-central1-ss-devops.cloudfunctions.net/rand?min=1&max=300`
 // VARIAVEL CRIADA PARA RECEBER A URL DA API PARA QUE SEJA EXECUTADA NO FUNCTION FETCH
     fetch(url).then((response) => {
@@ -31,18 +32,16 @@ let startGame = () => {
         .then((data) => {
             //CONDICIONAL PARA VERIFICAR SE O VALOR RECEBIDO DA API É TRUE E NUMBER
             if (data.value && typeof data.value === 'number') {
-                console.log(data.value)
 
                 //UM EVENTO DE ESCUTA EXECUTANDO A LOGICA DE VITÓRIA DO JOGO
                 let getEventClickInside = document.querySelector('#send')
                 getEventClickInside.addEventListener('click', (led) => {
                     //VARIÁVEL CRIADA PARA RECEBER O INPUT DO USER E COMPARAR COM O DATA.VALUE
                     let result = document.querySelector('#userValue').value
-                    console.log(result) //UM LOG PARA VER COMO ESTÁ CHEGANDO O DATA.VALUE
                     if (result == data.value) {
                         document.querySelector('#final').innerHTML = `Você acertou!`
 
-                        document.querySelector('#newMatch').style.display = 'flex'
+                        document.querySelector('#reload').style.display = 'flex'
                     } else if (result < data.value) {
                         document.querySelector('#final').innerHTML = `É maior`
 
@@ -345,29 +344,46 @@ let arrayInput =[]
 
 //BLOCO DE FUNCTION PARA ESCONDER E MOSTRAR OS 3 DISPLAYS LED
 function showDisplay(getting){
-if(getting.length === 1) {
-    document.querySelector('#containerTwo').style.display = 'none';
-    document.querySelector('#containerthree').style.display = 'none';
-} else if (getting.length === 2) {
-    document.querySelector('#containerthree').style.display = 'none';
-    document.querySelector('#containerTwo').style.display = 'flex';
+    
+    if(getting.length === 1) {
+        document.querySelector('#containerTwo').style.display = 'none';
+        document.querySelector('#containerthree').style.display = 'none';
+    } else if (getting.length === 2) {
+        document.querySelector('#containerthree').style.display = 'none';
+        document.querySelector('#containerTwo').style.display = 'flex';
+    
+    } else if (getting.length === 3) {
+        document.querySelector('#containerTwo').style.display = 'flex';
+        document.querySelector('#containerthree').style.display = 'flex';
+    }
+    }
 
-} else if (getting.length === 3) {
-    document.querySelector('#containerTwo').style.display = 'flex';
-    document.querySelector('#containerthree').style.display = 'flex';
-}
-}
 //EVENTO DE ESCUTA PARA INICIAR O BLOCO DE LOGICA DO 3 LEDS
 let getEventClick = document.querySelector('#send')
 getEventClick.addEventListener('click', (led) => {
     //GETUSERVALUE RECEBENDO O VALOR DO USIARIO NO INPUT
     getUserInput = document.querySelector('#userValue').value
+    
+    arrayInput.splice(0, 3) //ZERAR A ARRAY ANTES DE RECEBER UM NOVO VALOR
 
-    showDisplay(getUserInput)//INICIALIZANDO O BLOCO DE FUNCTION PARA OS 3 DISLPAYS LED
     //LOOP PARA SEPARAR CADA VALOR DO USUARIO EM UM UNICO ELEMENTO, EXEMPLO '230' => '2', '3', '0'
     for (let i = 0; i< getUserInput.length; i++) {
+
         arrayInput[i] = parseInt(getUserInput[i])
     }
+    //FUNÇÃO PARA TIRA O ZERO A ESQUERDA, POIS EU CONSEGUIR FAZER DE OUTRA FORMA
+    if (arrayInput[0] === 0 && arrayInput[1] === 0) {
+        console.log('hello')
+        arrayInput.splice(0, 2)
+    } else if (arrayInput[0] === 0) {
+        arrayInput.shift();
+        console.log(`o arrayInput ficou assim: ${arrayInput}`)
+    }
+
+
+    showDisplay(arrayInput)//INICIALIZANDO O BLOCO DE FUNCTION PARA OS 3 DISLPAYS LED
+
+
 //BLOCO DE CONDICIONAL PARA LIGAR CADA LEDE MAPEADO PORLETRA NO DISPLAY
     if (arrayInput[0] === 1) {
         mapLedOne.one()

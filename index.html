@@ -9,7 +9,7 @@
 </head>
 <body>
     <main>
-        <div>
+        <div class='displayApp'>
         <section id='one'>
             <h2>QUAL É O NÚMERO?</h2>
             <p id='final'></p>
@@ -45,12 +45,12 @@
         </section>
         <section id='three'>
             <div id='reload'>
-                <button id='newMatch'>Nova partida</button>
+                <button id='newMatch'><p id='newMatchP'>Nova partida</p></button>
             </div>
-            <div id='input'>
-                <input id='userValue' type="text" maxlength="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');">
+            <div id='input' class='styleBottom'>
+                <input id='userValue' class='styleBottom' type="text" maxlength="3" oninput="this.value=this.value.replace(/[^0-9]/g,'');">
                 <button id='send'>enviar</button>
-                <p id='final'></p>
+
             </div>
         </section>
         </div>

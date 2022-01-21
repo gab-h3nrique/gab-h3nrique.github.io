@@ -35,7 +35,8 @@ let startGame = () => {
 
         })
         .then((data) => {
-            let api = data.value
+            let api = 0;
+            api = data.value
             //CONDICIONAL PARA VERIFICAR SE O VALOR RECEBIDO DA API É TRUE E NUMBER
             if (api && typeof api === 'number') {
                 

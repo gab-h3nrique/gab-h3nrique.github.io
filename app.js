@@ -42,7 +42,8 @@ let startGame = () => {
                     let result = document.querySelector('#userValue').value
                     document.querySelector('#userValue').value='';//LIMPANDO O INPUT CLIANDO NO Enter
                     if (result == data.value) {
-                        document.querySelector('#final').innerHTML = `Você acertou!`
+                        document.querySelector('#final').style.color = '#0ac50a'
+                        document.querySelector('#final').innerHTML = `Você acertou!!`
 
                         document.querySelector('#reload').style.display = 'flex'
                     } else if (result < data.value) {
@@ -365,7 +366,7 @@ let getEventClick = document.querySelector('#send')
 getEventClick.addEventListener('click', (led) => {
     //GETUSERVALUE RECEBENDO O VALOR DO USIARIO NO INPUT
     getUserInput = document.querySelector('#userValue').value
-    
+    console.log(getUserInput)
     arrayInput.splice(0, 3) //ZERAR A ARRAY ANTES DE RECEBER UM NOVO VALOR
 
     //LOOP PARA SEPARAR CADA VALOR DO USUARIO EM UM UNICO ELEMENTO, EXEMPLO '230' => '2', '3', '0'

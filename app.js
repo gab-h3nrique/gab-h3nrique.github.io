@@ -34,7 +34,7 @@ let startGame = () => {
             return response.json()///RETORNANDO .JSON PARA A RESPONSE
         })
         .then((data) => {
-            let = api = 0;
+            let api = 0;
              api = data.value
             //CONDICIONAL PARA VERIFICAR SE O VALOR RECEBIDO DA API É TRUE E NUMBER
             if (api && typeof api === 'number') {

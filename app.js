@@ -16,13 +16,17 @@ clearDisplay();
 // EVENTO PARA O BOTÃO NOVA PARTIDA FAZ COM OQUE EXECUTE NOVAMENTE O STARTGAME
 document.querySelector('#reload').style.display = 'none'
 document.querySelector('#reload').addEventListener('click', (clique) => {  
-    document.querySelector('#final').style.display = 'none';  
+    document.querySelector('#final').style.display = 'none';
     clearDisplay()
     startGame();
 });
 //FUNÇÃO CRIADA STARTGAME EXECUTA A LOGICA DO BLOCO QUE INFORMA SE O JOGO FOI GANHO OU NAO
 let startGame = () => {
+    //  ESSE BLOCO DE COMANDO VAI RESETAR A INSTRUÇÃO DO USUARIO
+    document.querySelector('#final').style.display = 'flex';
+    document.querySelector('#final').innerHTML = '';
     document.querySelector('#reload').style.display = 'none'
+    // ------------------------------------------------------------
     let url = `https://us-central1-ss-devops.cloudfunctions.net/rand?min=1&max=300`
 // VARIAVEL CRIADA PARA RECEBER A URL DA API PARA QUE SEJA EXECUTADA NO FUNCTION FETCH
     fetch(url).then((response) => {
@@ -30,31 +34,32 @@ let startGame = () => {
 
         })
         .then((data) => {
+            let api = data.value
             //CONDICIONAL PARA VERIFICAR SE O VALOR RECEBIDO DA API É TRUE E NUMBER
-            if (data.value && typeof data.value === 'number') {
-
-
+            if (api && typeof api === 'number') {
+                
                 //UM EVENTO DE ESCUTA EXECUTANDO A LOGICA DE VITÓRIA DO JOGO
                 let getEventClickInside = document.querySelector('#send')
                 getEventClickInside.addEventListener('click', (led) => {
 
                     //VARIÁVEL CRIADA PARA RECEBER O INPUT DO USER E COMPARAR COM O DATA.VALUE
-                    let result = document.querySelector('#userValue').value
-                    document.querySelector('#userValue').value='';//LIMPANDO O INPUT CLIANDO NO Enter
-                    if (result == data.value) {
+                    let result = parseInt(document.querySelector('#userValue').value)
+
+                    if (result === api) {
                         document.querySelector('#final').style.color = '#0ac50a'
                         document.querySelector('#final').innerHTML = `Você acertou!!`
-
                         document.querySelector('#reload').style.display = 'flex'
-                    } else if (result < data.value) {
+                    } else if (result < api) {
+                        document.querySelector('#final').style.color = '#707070';
                         document.querySelector('#final').innerHTML = `É maior`
-
-                    } else if (result > data.value) {
+                        
+                    } else if (result > api) {
+                        document.querySelector('#final').style.color = '#707070';
                         document.querySelector('#final').innerHTML = `É menor`
-
                     }
 
                 })
+                
             } else {
                 console.log('Alerta de erro!')
                 return startGame(); //RETORNO PARA REPETIR O STARTGAME SE A API NÃO ENTREGAR TRUE E NUMERO
@@ -66,6 +71,7 @@ let startGame = () => {
             alert('Error: ' + err.message)
         })
 }
+document.querySelector('#userValue').value='';//LIMPANDO O INPUT CLIANDO NO Enter
 startGame(); //INICIALIZANDO O BLOCO DE CODIGO ACIMA
 
 /// AS TRES LET MAPLED BASICAMENTE MAPEANDO CADA LED PARA RODAR NO DISPLAY
@@ -364,9 +370,8 @@ function showDisplay(getting){
 //EVENTO DE ESCUTA PARA INICIAR O BLOCO DE LOGICA DO 3 LEDS
 let getEventClick = document.querySelector('#send')
 getEventClick.addEventListener('click', (led) => {
-    //GETUSERVALUE RECEBENDO O VALOR DO USIARIO NO INPUT
+    //GETUSERVALUE RECEBENDO O VALOR DO USUARIO NO INPUT
     getUserInput = document.querySelector('#userValue').value
-    console.log(getUserInput)
     arrayInput.splice(0, 3) //ZERAR A ARRAY ANTES DE RECEBER UM NOVO VALOR
 
     //LOOP PARA SEPARAR CADA VALOR DO USUARIO EM UM UNICO ELEMENTO, EXEMPLO '230' => '2', '3', '0'
@@ -376,16 +381,14 @@ getEventClick.addEventListener('click', (led) => {
     }
     //FUNÇÃO PARA TIRA O ZERO A ESQUERDA, POIS EU CONSEGUIR FAZER DE OUTRA FORMA
     if (arrayInput[0] === 0 && arrayInput[1] === 0) {
-        console.log('hello')
         arrayInput.splice(0, 2)
     } else if (arrayInput[0] === 0) {
         arrayInput.shift();
-        console.log(`o arrayInput ficou assim: ${arrayInput}`)
     }
 
 
     showDisplay(arrayInput)//INICIALIZANDO O BLOCO DE FUNCTION PARA OS 3 DISLPAYS LED
-
+    getUserInput = 0;
 
 //BLOCO DE CONDICIONAL PARA LIGAR CADA LEDE MAPEADO PORLETRA NO DISPLAY
     if (arrayInput[0] === 1) {

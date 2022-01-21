@@ -97,7 +97,7 @@ section {
   padding: 25px;
   border-radius: 40px;
   background: linear-gradient(145deg, #f6f6f6, #cfcfcf);
-box-shadow:  10px 10px 19px #c1c1c1,
+  box-shadow:  10px 10px 19px #c1c1c1,
              -10px -10px 19px #ffffff;
 }
 

@@ -8,15 +8,15 @@ function clearDisplay() {
     document.querySelector('#stick_EE').style.background = 'rgb(56, 1, 255)'
     document.querySelector('#stick_FF').style.background = 'rgb(56, 1, 255)'
     document.querySelector('#stick_GG').style.background = 'rgba(56, 1, 255, 0.137)'
-
-
     document.querySelector('#containerTwo').style.display = 'none';
     document.querySelector('#containerthree').style.display = 'none';
+    document.querySelector('#userValue').value='';
 }
-
+clearDisplay();
 // EVENTO PARA O BOTÃO NOVA PARTIDA FAZ COM OQUE EXECUTE NOVAMENTE O STARTGAME
 document.querySelector('#reload').style.display = 'none'
-document.querySelector('#reload').addEventListener('click', (clique) => {     
+document.querySelector('#reload').addEventListener('click', (clique) => {  
+    document.querySelector('#final').style.display = 'none';  
     clearDisplay()
     startGame();
 });
@@ -33,11 +33,14 @@ let startGame = () => {
             //CONDICIONAL PARA VERIFICAR SE O VALOR RECEBIDO DA API É TRUE E NUMBER
             if (data.value && typeof data.value === 'number') {
 
+
                 //UM EVENTO DE ESCUTA EXECUTANDO A LOGICA DE VITÓRIA DO JOGO
                 let getEventClickInside = document.querySelector('#send')
                 getEventClickInside.addEventListener('click', (led) => {
+
                     //VARIÁVEL CRIADA PARA RECEBER O INPUT DO USER E COMPARAR COM O DATA.VALUE
                     let result = document.querySelector('#userValue').value
+                    document.querySelector('#userValue').value='';//LIMPANDO O INPUT CLIANDO NO Enter
                     if (result == data.value) {
                         document.querySelector('#final').innerHTML = `Você acertou!`
 
@@ -49,8 +52,8 @@ let startGame = () => {
                         document.querySelector('#final').innerHTML = `É menor`
 
                     }
-                })
 
+                })
             } else {
                 console.log('Alerta de erro!')
                 return startGame(); //RETORNO PARA REPETIR O STARTGAME SE A API NÃO ENTREGAR TRUE E NUMERO
@@ -344,7 +347,6 @@ let arrayInput =[]
 
 //BLOCO DE FUNCTION PARA ESCONDER E MOSTRAR OS 3 DISPLAYS LED
 function showDisplay(getting){
-    
     if(getting.length === 1) {
         document.querySelector('#containerTwo').style.display = 'none';
         document.querySelector('#containerthree').style.display = 'none';
@@ -451,18 +453,14 @@ getEventClick.addEventListener('click', (led) => {
 })
 
     /* TENTEI USAR LOOP ALINHADO PORÉM NÃO CONSEGUI INTEGRAR AQUI.
-
     BASICAMENTE ELE IRIA AUTOMATIZAR A CONDICIONAL PARA LIGAR CADA NUMERO DE FORMA FLEXISÍVEL.
     
         let myArray = [0,1,2,3,4,5,6,7,8,9]
-
     for (let i = 0; i < arrayInput.length; i++) {
         for (let j = 0; j < myArray.length; j++) {
-
             if (arrayInput[i] === myArray[j]) {
                 mapLed[j]
                 console.log('hello')
-
             } 
         }
     } */

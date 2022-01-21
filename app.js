@@ -28,6 +28,7 @@ let startGame = () => {
     document.querySelector('#final').innerHTML = '';
     document.querySelector('#reload').style.display = 'none'
     // ------------------------------------------------------------
+
     let url = `https://us-central1-ss-devops.cloudfunctions.net/rand?min=1&max=300`
 // VARIAVEL CRIADA PARA RECEBER A URL DA API PARA QUE SEJA EXECUTADA NO FUNCTION FETCH
     fetch(url).then((response) => {
@@ -35,25 +36,24 @@ let startGame = () => {
         })
         .then((data) => {
             let api = 0;
-             api = data.value
+            api = parseInt(data.value)
             //CONDICIONAL PARA VERIFICAR SE O VALOR RECEBIDO DA API É TRUE E NUMBER
             if (api && typeof api === 'number') {
-                
-    
+         
                 //UM EVENTO DE ESCUTA EXECUTANDO A LOGICA DE VITÓRIA DO JOGO
                 let getEventClickInside = document.querySelector('#send')
                 getEventClickInside.addEventListener('click', (led) => {
 
                     //VARIÁVEL CRIADA PARA RECEBER O INPUT DO USER E COMPARAR COM O DATA.VALUE
                     let result = parseInt(document.querySelector('#userValue').value)
-
-
+                    
                     if (result === api) {
                         document.querySelector('#final').style.color = '#0ac50a';
                         document.querySelector('#final').innerHTML = `Você acertou!!`;
                         document.querySelector('#reload').style.display = 'flex';
                         document.querySelector('#input').style.display = 'none';
-
+                        result = 0;
+                        api = 0;
                     } else if (result < api) {
                         document.querySelector('#final').style.color = '#707070';
                         document.querySelector('#final').innerHTML = `É maior`
@@ -387,11 +387,9 @@ getEventClick.addEventListener('click', (led) => {
     }
     //FUNÇÃO PARA TIRA O ZERO A ESQUERDA, POIS EU CONSEGUIR FAZER DE OUTRA FORMA
     if (arrayInput[0] === 0 && arrayInput[1] === 0) {
-        console.log('hello')
         arrayInput.splice(0, 2)
     } else if (arrayInput[0] === 0) {
         arrayInput.shift();
-        console.log(`o arrayInput ficou assim: ${arrayInput}`)
     }
 
 
